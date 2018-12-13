@@ -102,54 +102,26 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-	}
+	
 	
 	double controls=controller.getRawAxis(1);
-	if(controls>0.6) {
-		motorController.set(-0.6);
-	}
-	if(controls==0.6) {
-		motorController.set(0.6);
-	}
-	if(controls==0.5) {
+	if(controls>0.6 && controls<0.8) {
 		motorController.set(0.5);
 	}
-	if(controls==0.4) {
-		motorController.set(0.4);
-	}
-	if(controls==0.3) {
-		motorController.set(0.3);
-	}
-	if(controls==0.2) {
-		motorController.set(0.2);
-	}
-	if(controls==0.1) {
-		motorController.set(0.1);
-	}
-	if(controls>-0.6) {
-		motorController.set(0.6);
-	}
-	if(controls==-0.6) {
-		motorController.set(-0.6);
-	}
-	if(controls==-0.5) {
+	if(controls>0.8) {
 		motorController.set(-0.5);
 	}
-	if(controls==-0.4) {
-		motorController.set(-0.4);
+	if(controls<-0.6 && controls>-0.8) {
+		motorController.set(0.5);
 	}
-	if(controls==-0.3) {
-		motorController.set(-0.3);
+	if(controls<-0.8) {
+		motorController.set(-0.5);
 	}
-	if(controls==-0.2) {
-		motorController.set(-0.2);
-	}
-	if(controls==-0.1) {
-		motorController.set(-0.1);
-	}
+	
 	/**
 	 * This function is called periodically during test mode.
 	 */
+}
 	@Override
 	public void testPeriodic() {
 	}
