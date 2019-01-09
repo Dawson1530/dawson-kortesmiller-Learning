@@ -8,6 +8,7 @@
 package org.usfirst.frc.team7052.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -22,8 +23,16 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  */
 public class Robot extends TimedRobot {
 	int motor =0;
-	SpeedControllerGroup motorController;
+	int motor2 =1;
+	int motor3 =2;
+	int motor4 =3;
+	SpeedControllerGroup motorControllerleft;
+	SpeedControllerGroup motorControllerright;
 	Joystick controller;
+	Spark firstmotor;
+	Spark secondmotor;
+	Spark thirdmotor;
+	Spark fourthmotor;
 
 	
 
@@ -34,6 +43,12 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		
+		firstmotor = new Spark(motor);
+		secondmotor = new Spark(motor2);
+		thirdmotor = new Spark(motor3);
+		fourthmotor = new Spark(motor4);
+		motorControllerleft = new SpeedControllerGroup(firstmotor, secondmotor);
+		motorControllerright = new SpeedControllerGroup(thirdmotor, fourthmotor);
 	}
 
 	/**
@@ -106,17 +121,42 @@ public class Robot extends TimedRobot {
 	
 	double controls=controller.getRawAxis(1);
 	if(controls>0.6 && controls<0.8) {
-		motorController.set(0.5);
+		motorControllerleft.set(0.5);
+		motorControllerright.set(0.5);
 	}
 	if(controls>0.8) {
-		motorController.set(-0.5);
+		motorControllerleft.set(-0.5);
+		motorControllerright.set(-0.5);
 	}
 	if(controls<-0.6 && controls>-0.8) {
-		motorController.set(0.5);
+		motorControllerleft.set(-0.5);
+		motorControllerright.set(-0.5);
 	}
 	if(controls<-0.8) {
-		motorController.set(-0.5);
+		motorControllerleft.set(0.5);
+		motorControllerright.set(0.5);
 	}
+	
+	double controls2=controller.getRawAxis(0);
+	if(controls2>0.6 && controls2<0.8) {
+		motorControllerleft.set(0.5);
+		motorControllerright.set(-0.5);
+	}
+	if(controls2>0.8) {
+		motorControllerleft.set(-0.5);
+		motorControllerright.set(0.5);
+	}
+	if(controls2<-0.6 && controls2>-0.8) {
+		motorControllerleft.set(-0.5);
+		motorControllerright.set(0.5);
+	}
+	if(controls2<-0.8) {
+		motorControllerleft.set(0.5);
+		motorControllerright.set(-0.5);
+	}
+	
+	
+	
 	
 	/**
 	 * This function is called periodically during test mode.
