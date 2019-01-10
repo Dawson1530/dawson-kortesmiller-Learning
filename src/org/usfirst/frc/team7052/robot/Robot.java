@@ -23,9 +23,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  */
 public class Robot extends TimedRobot {
 	int motor =0;
-	int motor2 =1;
+	int motor2 =3;
 	int motor3 =2;
-	int motor4 =3;
+	int motor4 =4;
 	SpeedControllerGroup motorControllerleft;
 	SpeedControllerGroup motorControllerright;
 	Joystick controller;
